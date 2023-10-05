@@ -7,17 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Business\**" />
-    <Compile Remove="Repository\**" />
-    <Content Remove="Business\**" />
-    <Content Remove="Repository\**" />
-    <EmbeddedResource Remove="Business\**" />
-    <EmbeddedResource Remove="Repository\**" />
-    <None Remove="Business\**" />
-    <None Remove="Repository\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.11">
       <PrivateAssets>all</PrivateAssets>
@@ -30,6 +19,11 @@
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Business\Interface\" />
+    <Folder Include="Repository\Interface\" />
   </ItemGroup>
 
 </Project>
