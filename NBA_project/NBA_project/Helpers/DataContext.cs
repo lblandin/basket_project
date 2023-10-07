@@ -1,24 +1,25 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NBA_project.Common.Models;
-using System;
-using System.Security.Cryptography.X509Certificates;
 
 namespace NBA_project.Helpers
 {
     public class DataContext : DbContext
     {
-        static readonly string connectionString = "server=localhost;port=3307;user=root;password=root;database=bdd_nba";
-
-        public DataContext()
+        private readonly IConfiguration _configuration;
+        
+        public DataContext(IConfiguration configuration)
         {
+            _configuration = configuration;
         }
 
-        public DataContext(DbContextOptions<DataContext> options) : base(options)
+        public DataContext(DbContextOptions<DataContext> options, IConfiguration configuration) : base(options)
         {
+            _configuration = configuration;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            var connectionString = _configuration.GetValue<string>("ConnectionStrings:DefaultConnection");
             var serverVersion = new MySqlServerVersion(new Version(8, 1, 0));
             optionsBuilder.UseMySql(connectionString, serverVersion);
         }
